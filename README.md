@@ -28,103 +28,107 @@ Result of the vote
 Lab: Running sample application in AKS cluster:
 Step 1: clone git repository into AZURE CLI:
 
-   git clone https://github.com/objectcomputing/cloud-operations
+    git clone https://github.com/objectcomputing/cloud-operations
 
 Important Commands: 
   
-  “ Kubectl get node”  to see the list of nodes
-  “Kubectl get pods”  - to see a list of pods. 
- “ Kubectl get service” to see the service list.
+    “ Kubectl get node”  to see the list of nodes
+     “Kubectl get pods”  - to see a list of pods. 
+    “ Kubectl get service” to see the service list.
  
 
 Step-2:
  
    So now I'm going to  create these pods and services one by one.I will start with the Voting app.
  kubectl create command -f voting app will create a voting app pod .
-  
-         “kubectl create -f voting-app.yaml” 
+   
+         kubectl create -f voting-app.yaml
 
-    to check whether it has created or not run get pod command
+  to check whether it has created or not run get pod command
 
-         “ kubectl get pod command”
+        kubectl get pod command
 
 Step-3:
 
 Next  to access this voting service from a browser. We need an external service to be created.
 Now were going to create the service for the voting app .
    
-   “kubectl create -f voting-app-service.yml”
+    kubectl create -f voting-app-service.yml
 
 Now we can list the services using the kubectl get services command.
 
-     “kubectl get services ”
+      kubectl get services 
 
 Once the voting.app service is created we can access the service externally by using external IP address.
 
 Step4 :
+
 Next we’ll create a redis pod, because voting app is dependent on the redis pods.
  
-“kubectl create -f  redis-app.yml”
+     kubectl create -f  redis-app.yml
 
   Once the  Redis pod is created.  We can see the status of pod running with redis name.
 
-Use  “ kubectl get pods”  to check the pods status 
-
+Use   
+     kubectl get pods 
    
 
 Step-5
 
 Now we will create the redis service,so that  redis pod can  access the Services.
 
-  “ kubectl create -f redis-service.yml”
+     kubectl create -f redis-service.yml
    
-      That creates the redis service. 
+ That creates the redis service. 
        
-      “kubectl get services”. 
+     kubectl get services 
 
 Now we can see the service is running But if we look at the type. it's says cluster IP that indicates that it's an internal service.
 
 Step-6
+
 Now we will create postgres db to store the data of result.
 
-        “kubectl create -f postgres-pod.yml”
+    kubectl create -f postgres-pod.yml
 
 Check the service status using get pod command.
 
-     “kubectl get pod”  
+    kubectl get pod
 
 Step-7
+
  Now we will create the postgres service to enable the other component to access  postgres database.
-“kubectl create -f postgres-service.yml”
+ 
+  kubectl create -f postgres-service.yml
 
 
 Now we can see that, db cluster IP has been created by using get services command line 
 
-“kubectl get services”
+  kubectl get services
 
 Step-8
 
 Deploy the worker app.
 
-“kubectl create -f worker-app.yaml”
+  kubectl create -f worker-app.yaml
 
 
 Step-9
 
 Now i am going to create the result app pod.
 
-“kubectl create -f result-app.yaml”
+      kubectl create -f result-app.yaml
 
 Check the pod status 
-
-“kubectl get pods”
+     
+      kubectl get pods
 
 
 Step-10
 
 Now we will create the result service for making the result app available externally.
    
-   “kubectl create -f result-app-service.yml”
+     kubectl create -f result-app-service.yml
 
 This will be our  final service to create, 
 
