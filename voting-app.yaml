@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: voting-app-pod
+  labels:
+    name: voting-app-pod
+    app: sample-voting-app
+
+spec:
+  containers: # we only have 1 container per pod so one image specified
+    - name: voting-app
+      image: dockersamples/examplevotingapp_vote
+      ports:
+      - containerPort: 80
+
+#Labels are used to tag the pods or resources that we create on Kubernetes, this way we can
+  #later search these resources based on these labels of respective pods
+  #So I'm going to create a label named "name".
+  #I'm going to give that a value of voting-app-pod that I'm going to add a label called app and I'm going
