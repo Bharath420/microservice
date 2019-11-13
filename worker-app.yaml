@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: worker-app-pod
+  labels:
+    name: worker-app-pod
+    app: sample-worker-app
+
+spec:
+  containers: # we only have 1 container per pod so one image specified
+    - name: worker-app
+      image: dockersamples/examplevotingapp_worker
+ #worker does not expose any ports because it's not a web application so we no need port.
