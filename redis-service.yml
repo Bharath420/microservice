@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    name: redis-service
+    app: sample-voting-app
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  # Now when we create this service we're basically telling the service to listen on port 6379 and forward to 6379.
+  selector:
+    name: redis-pod
+    app: sample-voting-app
