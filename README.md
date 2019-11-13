@@ -28,7 +28,7 @@ Result of the vote
 Lab: Running sample application in AKS cluster:
 Step 1: clone git repository into AZURE CLI:
 
-    git clone https://github.com/objectcomputing/cloud-operations
+    git clone
 
 Important Commands: 
   
@@ -99,25 +99,25 @@ Step-7
 
  Now we will create the postgres service to enable the other component to access  postgres database.
  
-  kubectl create -f postgres-service.yml
+   kubectl create -f postgres-service.yml
 
 
 Now we can see that, db cluster IP has been created by using get services command line 
 
-  kubectl get services
+   kubectl get services
 
 Step-8
 
 Deploy the worker app.
 
-  kubectl create -f worker-app.yaml
+    kubectl create -f worker-app.yaml
 
 
 Step-9
 
 Now i am going to create the result app pod.
 
-      kubectl create -f result-app.yaml
+     kubectl create -f result-app.yaml
 
 Check the pod status 
      
