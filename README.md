@@ -151,4 +151,30 @@ You can also check on the state of the replicaset:
 
     kubectl get pods frontend-9si5l -o yaml
    
+Scaling a ReplicaSet
 
+A ReplicaSet can be easily scaled up or down by simply updating the .spec.replicas field. The ReplicaSet controller ensures that a desired number of Pods with a matching label selector are available and operational.
+
+ReplicaSet as a Horizontal Pod Autoscaler Target
+
+A ReplicaSet can also be a target for Horizontal Pod Autoscalers (HPA). That is, a ReplicaSet can be auto-scaled by an HPA. Here is an example HPA targeting the ReplicaSet we created in the previous example.
+
+      apiVersion: autoscaling/v1
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: frontend-scaler
+      spec:
+        scaleTargetRef:
+          kind: ReplicaSet
+          name: frontend
+        minReplicas: 3
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 50
+        
+Saving this manifest into hpa-rs.yaml and submitting it to a Kubernetes cluster should create the defined HPA that autoscales the target ReplicaSet depending on the CPU usage of the replicated Pods.
+
+    kubectl apply -f scale.yaml
+
+Alternatively, you can use the kubectl autoscale command to accomplish the same (and it’s easier!)
+
+kubectl autoscale rs frontend --max=10
