@@ -138,3 +138,17 @@ Lab: Delete cluster
 When the cluster is no longer needed, delete the cluster resources, which deletes all associated resources. This operation can be completed in the Azure portal by selecting the Delete button on the AKS cluster dashboard. Alternatively, the az aks delete command can be used in the Cloud Shell:
 
 “az aks delete --resource-group myResourceGroup --name myAKSCluster --no-wait”
+
+
+You can then get the current ReplicaSets deployed:
+
+    kubectl get rs
+    
+You can also check on the state of the replicaset:
+
+   kubectl describe rs/frontend    
+ You can also verify that the owner reference of these pods is set to the frontend ReplicaSet. To do this, get the yaml of one of the Pods running:
+
+   kubectl get pods frontend-9si5l -o yaml
+   
+
